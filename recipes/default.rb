@@ -5,11 +5,8 @@
 # Copyright 2012, Escape Studios
 #
 
-case node[:platform]
-	when "debian", "ubuntu"
-		package "supervisor" do
-			action :install
-		end
+package "supervisor" do
+	action :install
 end
 
 service "supervisor" do
