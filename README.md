@@ -26,8 +26,8 @@ Attributes
 Usage
 =====
 
-1) include `recipe[chef-supervisor]` in a run list
-2) include `recipe[chef-supervisor::programs]` to add programs
+1) include `recipe[supervisor]` in a run list
+2) include `recipe[supervisor::programs]` to add programs
 3) tweak the attributes via attributes/default.rb
 	--- OR ---
 	override the attribute on a higher level (http://wiki.opscode.com/display/chef/Attributes#Attributes-AttributesPrecedence)

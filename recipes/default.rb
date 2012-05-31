@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef-supervisor
+# Cookbook Name:: supervisor
 # Recipe:: default
 #
 # Copyright 2012, Escape Studios
