@@ -10,19 +10,11 @@ package "supervisor" do
 end
 
 service "supervisor" do
-	service_name "supervisor"
 	start_command "/etc/init.d/supervisor start"
 	stop_command "/etc/init.d/supervisor stop"
-	restart_command "/etc/init.d/supervisor restart"
+	#restart_command "/etc/init.d/supervisor restart"
 	status_command "/etc/init.d/supervisor status"
-	supports value_for_platform(
-		"default" => {
-			"default" => [
-				:start,
-				:stop,
-				:status
-			]
-		}
-	)
-	action :enable
+	supports [:start, :stop, :status]
+	#starts the service if it's not running and enables it to start at system boot time
+	action [:enable, :start]
 end
