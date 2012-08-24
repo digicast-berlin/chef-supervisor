@@ -5,6 +5,16 @@
 # Copyright 2012, Escape Studios
 #
 
+#'remove' existing programs
+#supervisor keeps on going with these 'removed' programs as long as it is not restarted
+bash "remove_programs" do
+	cwd "/etc/supervisor/conf.d/"
+	code <<-EOH
+		rm -f *.conf
+	EOH
+end
+
+#'install' new programs
 programs = node['supervisor']['programs']
 
 unless programs.nil?
@@ -24,22 +34,14 @@ unless programs.nil?
 				:startsecs => programs[key]['startsecs'],
 				:numprocs => programs[key]['numprocs']
 			)
-			#restart doesn't work as expected:
-			#changes in /etc/supervisor/conf.d/*.conf are not being picked up
-			#so: we'll just stop and start the service (see below)
 			#notifies :restart, "service[supervisor]"
 			action :create
 		end	
 	end
 end
 
-#(see above) restart doesn't work as expected
-#changes in /etc/supervisor/conf.d/*.conf are not being picked up
-#so: we'll just stop and start the service
+#we'll restart here rather than using a "notifies" on the template block above,
+#just to cover the case we actually want to remove all programs and don't want to run any anymore 
 service "supervisor" do
-  action :stop
-end
-
-service "supervisor" do
-  action :start
+  action :restart
 end
