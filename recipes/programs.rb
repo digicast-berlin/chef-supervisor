@@ -2,7 +2,7 @@
 # Cookbook Name:: supervisor
 # Recipe:: programs
 #
-# Copyright 2012, Escape Studios
+# Copyright 2012-2013, Escape Studios
 #
 
 #'remove' existing programs
