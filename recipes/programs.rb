@@ -40,6 +40,14 @@ unless programs.nil?
 	end
 end
 
+
+if File.exists? "#{node.supervisor.sockfile}"
+  execute "remove sockfile if exists" do
+    command "unlink #{node.supervisor.sockfile}"
+    user "root"  
+  end
+end
+
 #we'll restart here rather than using a "notifies" on the template block above,
 #just to cover the case we actually want to remove all programs and don't want to run any anymore 
 service "supervisor" do
