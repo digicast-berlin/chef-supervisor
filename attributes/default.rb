@@ -6,3 +6,4 @@
 #
 
 default['supervisor']['programs'] = {}
+default['supervisor']['sockfile'] = "/var/run/supervisor.sock"
